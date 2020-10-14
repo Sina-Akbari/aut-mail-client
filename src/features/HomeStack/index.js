@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Inbox from './screens/Inbox';
-import Email from './screens/Email';
+import RecievedEmail from './screens/RecievedEmail';
 
 const Stack = createStackNavigator();
 
@@ -9,7 +9,7 @@ function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Inbox" component={Inbox} />
-      <Stack.Screen name="Email" component={Email} />
+      <Stack.Screen name="RecievedEmail" component={RecievedEmail} />
     </Stack.Navigator>
   );
 }

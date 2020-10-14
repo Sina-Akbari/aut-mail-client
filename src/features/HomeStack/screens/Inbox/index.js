@@ -1,22 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { translate } from '@translations';
-import Button from '@components/Button';
-import { useDispatch } from 'react-redux';
-import { logout } from '@features/AuthStack/redux/actions';
-import { toggleTheme } from '@core/redux/theme/actions';
+import { View } from 'react-native';
+import EmailList from '@components/EmailList';
 
-function Inbox({ navigation }) {
-  const dispatch = useDispatch();
-
+function Inbox({}) {
   return (
-    <>
-      <Text>{translate('hello')}</Text>
-      <Text>{translate('Good morning')}</Text>
-      <Text>Currency: {translate('Currency')}</Text>
-      <Button onPress={() => dispatch(logout())}>Logout</Button>
-      <Button onPress={() => dispatch(toggleTheme())}>Toggle Theme</Button>
-    </>
+    <View>
+      <EmailList navigateTo="RecievedEmail" />
+    </View>
   );
 }
 

@@ -1,15 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { translate } from '@translations';
+import { View } from 'react-native';
+import EmailList from '@components/EmailList';
 
-function Inbox({ navigation }) {
+function SentInbox({ navigation }) {
   return (
-    <>
-      <Text>{translate('hello')}</Text>
-      <Text>{translate('Good morning')}</Text>
-      <Text>Currency: {translate('Currency')}</Text>
-    </>
+    <View>
+      <EmailList navigateTo="SentEmail" />
+    </View>
   );
 }
 
-export default Inbox;
+export default SentInbox;
