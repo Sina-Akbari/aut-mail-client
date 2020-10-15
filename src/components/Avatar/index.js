@@ -1,16 +1,22 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 
-export default ({}) => {
+export default ({ isSeen }) => {
   return (
-    <Image style={styles.image} source={require('@assets/images/Avatar.png')} />
+    <Image
+      style={[
+        styles.image,
+        !isSeen ? { borderWidth: 5, borderColor: 'green' } : {},
+      ]}
+      source={require('@assets/images/Avatar.png')}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   image: {
-    width: 60,
-    height: 60,
+    width: 45,
+    height: 45,
     borderRadius: 30,
     marginVertical: 8,
     marginHorizontal: 16,

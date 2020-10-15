@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import themeReducer from '@core/redux/theme/reducer';
 import authReducer from '@features/AuthStack/redux/reducer';
 import inboxReducer from '@features/HomeStack/redux/reducers';
+import sendReducer from '@features/SendStack/redux/reducers';
 
 const initialState = {
   theme: 'light',
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
   theme: themeReducer,
   token: authReducer,
   inbox: inboxReducer,
+  sendBox: sendReducer,
 });
 
 const persistConfig = {

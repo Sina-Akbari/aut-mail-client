@@ -9,7 +9,7 @@ function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Inbox" component={Inbox} />
-      <Stack.Screen name="RecievedEmail" component={RecievedEmail} />
+      <Stack.Screen name="Recieved Email" component={RecievedEmail} />
     </Stack.Navigator>
   );
 }

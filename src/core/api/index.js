@@ -22,7 +22,7 @@ configuredAxios.interceptors.response.use(
       // state.dispatch(showError(error.response.data.message));
       return { ...error.response.data, status: error.response.status };
     } else if (error.request) {
-      console.log('ERROR REQUEST', error.request);
+      console.log('ERROR REQUEST', error.request.status);
       // state.dispatch(showError('Network connection error!'));
       return error;
     } else {

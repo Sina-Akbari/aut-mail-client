@@ -1,5 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  DrawerActions,
+  NavigationContainer,
+  useNavigation,
+} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -8,6 +12,7 @@ import HomeStack from '@features/HomeStack';
 import SendStack from '@features/SendStack';
 import { useSelector } from 'react-redux';
 import CustomDrawerNavigation from './CustomDrawerNavigation';
+import { StyleSheet } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -32,3 +37,10 @@ export default function NavigationProvider() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  hamburgerButton: {
+    width: 16,
+    aspectRatio: 1,
+  },
+});

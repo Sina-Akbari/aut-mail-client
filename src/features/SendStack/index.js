@@ -9,9 +9,9 @@ const Stack = createStackNavigator();
 function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="SentInbox" component={SentInbox} />
+      <Stack.Screen name="Sent" component={SentInbox} />
       <Stack.Screen name="Compose" component={Compose} />
-      <Stack.Screen name="SentEmail" component={SentEmail} />
+      <Stack.Screen name="Sent Email" component={SentEmail} />
     </Stack.Navigator>
   );
 }

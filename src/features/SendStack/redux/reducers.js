@@ -1,8 +1,8 @@
-import { GET_INBOX } from './constants';
+import { GET_SENT_BOX } from './constants';
 
 export default (state = [], action) => {
   switch (action.type) {
-    case GET_INBOX:
+    case GET_SENT_BOX:
       return action.payload;
     default:
       return state;
