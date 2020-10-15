@@ -1,5 +1,15 @@
+import { loginAPI } from '@core/api/authentication';
 import { LOGIN, LOGOUT } from './types';
 
-export const login = () => ({ type: LOGIN });
+export const login = (username, password) => async (dispatch) => {
+  const { success, error } = await loginAPI(username, password);
+  if (success) {
+    dispatch({ type: LOGIN, payload: success.accessToken });
+  } else {
+    console.log(error);
+  }
+};
 
-export const logout = () => ({ type: LOGOUT });
+export const logout = () => {
+  return { type: LOGOUT };
+};

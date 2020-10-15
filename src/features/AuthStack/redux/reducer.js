@@ -1,20 +1,14 @@
 import { LOGIN, LOGOUT } from './types';
 
 // Initial State
-const initialState = {
-  isLoggedIn: false,
-};
+const initialState = null;
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
-      return {
-        isLoggedIn: true,
-      };
+      return action.payload;
     case LOGOUT:
-      return {
-        isLoggedIn: false,
-      };
+      return null;
     default:
       return state;
   }

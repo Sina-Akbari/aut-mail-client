@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default ({ username, subject }) => {
+export default ({ from, subject }) => {
   return (
     <View style={styles.container}>
       <View style={styles.fieldContainer}>
         <Text style={styles.header}>From:</Text>
-        <Text style={styles.username}>{username || 'Username'}</Text>
+        <Text style={styles.username}>
+          {from ? from.name || from.address : 'Username'}
+        </Text>
       </View>
       <View style={styles.fieldContainer}>
         <Text style={styles.header}>Subject:</Text>

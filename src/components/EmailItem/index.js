@@ -3,19 +3,21 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Avatar from '@components/Avatar';
 
-export default ({ username, subject, navigateTo }) => {
+export default ({ id, from, subject, navigateTo }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       style={styles.touchable}
       onPress={() => {
-        navigation.navigate(navigateTo);
+        navigation.navigate(navigateTo, { id });
       }}>
       <View style={styles.container}>
         <Avatar />
-        <View style={{ justifyContent: 'center' }}>
-          <Text style={styles.username}>{username || 'USERNAME'}</Text>
+        <View>
+          <Text style={styles.username}>
+            {from.name || from.address || 'USERNAME'}
+          </Text>
           <Text style={styles.subject}>{subject || 'SUBJECT'}</Text>
         </View>
       </View>

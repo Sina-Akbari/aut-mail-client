@@ -1,5 +1,25 @@
-import Axios from 'axios';
+import Axios from './';
 
-export const getInboxAPI = async (offset, limit) => {
-  return await Axios.get('https://jsonplaceholder.typicode.com/users');
+export const getRecievedEmailsAPI = async (offset, limit) => {
+  let success = null;
+  let error = null;
+  try {
+    success = await Axios.get('/mails', { params: { offset, limit } });
+  } catch (e) {
+    error = e;
+  }
+
+  return { success: success.data, error };
+};
+
+export const getRecievedEmailAPI = async (id) => {
+  let success = null;
+  let error = null;
+  try {
+    success = await Axios.get(`/mails/${id}`);
+  } catch (e) {
+    error = e;
+  }
+
+  return { success: success.data, error };
 };

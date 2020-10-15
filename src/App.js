@@ -43,7 +43,6 @@ function App() {
       console.log(e);
     }
   }, [forceUpdate]);
-
   return (
     <Provider store={store}>
       <UIKittenProvider>

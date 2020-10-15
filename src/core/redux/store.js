@@ -1,15 +1,20 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import themeReducer from '@core/redux/theme/reducer';
 import authReducer from '@features/AuthStack/redux/reducer';
-import inboxReducer from '../redux/Inbox/reducers';
+import inboxReducer from '@features/HomeStack/redux/reducers';
+
+const initialState = {
+  theme: 'light',
+  token: null,
+  inbox: [],
+};
 
 export const rootReducer = combineReducers({
   theme: themeReducer,
-  auth: authReducer,
+  token: authReducer,
   inbox: inboxReducer,
 });
 
@@ -20,9 +25,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middlewares = [thunk, logger];
+const middlewares = [thunk];
 
-const store = createStore(persistedReducer, applyMiddleware(...middlewares));
+const store = createStore(
+  persistedReducer,
+  initialState,
+  applyMiddleware(...middlewares),
+);
 
 export const persistor = persistStore(store);
 

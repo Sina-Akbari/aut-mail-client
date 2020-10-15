@@ -2,29 +2,22 @@ import Axios from 'axios';
 import { getTokenFromStore } from '@utils/getTokenFromStore';
 import store from '@core/redux/store';
 import AsyncStorage from '@react-native-community/async-storage';
+import { API_URL } from '../../../env.json';
+import { logout } from '@features/AuthStack/redux/actions';
 
 export const configuredAxios = Axios.create({
-  baseURL: `http://${process.env.REACT_APP_HOST_API}`,
-  headers: {
-    'Content-Type': 'application/json; charset=utf-8',
-  },
+  baseURL: API_URL,
 });
 
 configuredAxios.interceptors.response.use(
-  function ({ config, data, headers, status, statusText, request }) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-
-    const response = { ...data, status };
-    return response;
-  },
+  (res) => res,
   function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if (error.response) {
       console.log('ERROR RESPONSE', error.response);
       if (error.response.status === 401 && store.getState().token) {
-        // store.dispatch(logoutSuccess());
+        store.dispatch(logout());
       }
       // state.dispatch(showError(error.response.data.message));
       return { ...error.response.data, status: error.response.status };
@@ -40,9 +33,9 @@ configuredAxios.interceptors.response.use(
 );
 
 configuredAxios.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const token = JSON.parse(
-      AsyncStorage.getItem('persist:root') || '{}',
+      (await AsyncStorage.getItem('persist:root')) || '{}',
     )?.token.replace(/"/g, '');
 
     if (token !== 'null') {

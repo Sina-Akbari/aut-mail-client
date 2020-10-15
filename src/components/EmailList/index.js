@@ -1,27 +1,19 @@
-import { getInbox } from '@core/redux/Inbox/actions';
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
 import EmailItem from '../EmailItem';
 
-export default ({ navigateTo }) => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.inbox);
-
-  useEffect(() => {
-    dispatch(getInbox());
-  }, [dispatch]);
-
+export default ({ navigateTo, data }) => {
   return (
     <Fragment>
       <FlatList
         data={data}
-        windowSize={8}
+        windowSize={16}
         keyExtractor={({ id }) => `${id}`}
-        renderItem={({ item: { username, name } }) => (
+        renderItem={({ item: { from, subject, id } }) => (
           <EmailItem
-            username={username}
-            subject={name}
+            id={id}
+            from={from[0]}
+            subject={subject}
             navigateTo={navigateTo}
           />
         )}

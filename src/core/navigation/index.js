@@ -7,17 +7,20 @@ import AuthenticationStack from '@features/AuthStack';
 import HomeStack from '@features/HomeStack';
 import SendStack from '@features/SendStack';
 import { useSelector } from 'react-redux';
+import CustomDrawerNavigation from './CustomDrawerNavigation';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function NavigationProvider() {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const token = useSelector((state) => state.token);
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
-        <Drawer.Navigator initialRouteName="Home">
+      {token ? (
+        <Drawer.Navigator
+          initialRouteName="Home"
+          drawerContent={(props) => <CustomDrawerNavigation {...props} />}>
           <Drawer.Screen name="Home" component={HomeStack} />
           <Drawer.Screen name="Send" component={SendStack} />
         </Drawer.Navigator>
