@@ -15,7 +15,7 @@ const initialState = {
   route: null,
   inbox: [],
   sendBox: [],
-  boxes: ['INBOX', 'SENT'],
+  boxes: ['INBOX', 'Sent'],
 };
 
 export const rootReducer = combineReducers({

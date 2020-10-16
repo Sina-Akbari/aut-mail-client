@@ -1,6 +1,6 @@
 import { GET_ALL_BOX } from './types';
 
-const initialState = ['INBOX', 'SENT'];
+const initialState = ['INBOX', 'Sent', 'SENT'];
 
 export default (state = initialState, action) => {
   switch (action.type) {

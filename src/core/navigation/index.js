@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthenticationStack from '@features/AuthStack';
 import HomeStack from '@features/HomeStack';
 import SendStack from '@features/SendStack';
+import BoxStack from '@features/BoxStack';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomDrawerNavigation from './CustomDrawerNavigation';
 import { StyleSheet } from 'react-native';
@@ -19,7 +20,6 @@ const getActiveRouteName = (state) => {
   const route = state.routes[state?.index || 0];
 
   if (route.state) {
-    // Dive into nested navigators
     return getActiveRouteName(route.state);
   }
 
@@ -28,8 +28,9 @@ const getActiveRouteName = (state) => {
 
 export default function NavigationProvider() {
   const token = useSelector((state) => state.token);
-  const boxes = useSelector((state) => state.boxes);
-  console.log('BOXES', boxes);
+  const boxes = useSelector((state) =>
+    state.boxes.filter((box) => !['INBOX', 'Sent'].includes(box)),
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllBoxes());
@@ -41,20 +42,24 @@ export default function NavigationProvider() {
         if (!state) {
           return;
         }
-        //@ts-ignore
         dispatch({ type: ROUTE_CHANGE, payload: getActiveRouteName(state) });
       }}>
       {token ? (
         <Drawer.Navigator
           initialRouteName="Home"
           drawerContent={(props) => <CustomDrawerNavigation {...props} />}>
-          {/* {boxes.map((box) => (
-            <Drawer.Screen name={box}
-              component={BoxStack}
-            />
-          ))} */}
           <Drawer.Screen name="Home" component={HomeStack} />
-          <Drawer.Screen name="Send" component={SendStack} />
+          <Drawer.Screen name="Sent" component={SendStack} />
+          {boxes.map((box) => {
+            return (
+              <Drawer.Screen
+                key={box}
+                name={box}
+                component={BoxStack}
+                initialParams={{ name: box }}
+              />
+            );
+          })}
         </Drawer.Navigator>
       ) : (
         <Stack.Navigator>
