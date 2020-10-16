@@ -6,7 +6,7 @@ export default ({ isSeen }) => {
     <Image
       style={[
         styles.image,
-        !isSeen ? { borderWidth: 5, borderColor: 'green' } : {},
+        !isSeen ? { borderWidth: 5, borderColor: '#fa8a02' } : {},
       ]}
       source={require('@assets/images/Avatar.png')}
     />

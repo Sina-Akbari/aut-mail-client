@@ -8,7 +8,10 @@ export default ({ id, from, subject, isSeen, navigateTo }) => {
 
   return (
     <TouchableOpacity
-      style={styles.touchable}
+      style={[
+        styles.touchable,
+        !isSeen ? { borderRightWidth: 5, borderColor: '#fa8a02' } : {},
+      ]}
       onPress={() => {
         navigation.navigate(navigateTo, { id });
       }}>

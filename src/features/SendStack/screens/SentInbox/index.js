@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import EmailList from '@components/EmailList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSentBox } from '../../redux/actions';
+import Compose from '@components/Compose';
 
 function Inbox({}) {
   const data = useSelector((state) => state.sendBox);
@@ -15,6 +16,7 @@ function Inbox({}) {
   return (
     <View>
       <EmailList navigateTo="Sent Email" data={data} />
+      <Compose />
     </View>
   );
 }

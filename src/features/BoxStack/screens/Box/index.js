@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import EmailList from '@components/EmailList';
 import { getEmailsAPI } from '@core/api/box';
+import Compose from '@components/Compose';
 
 function Box({ route }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { name } = route;
   console.log('name', name);
 
@@ -17,15 +19,24 @@ function Box({ route }) {
       } else {
         console.log(error);
       }
+      setLoading(false);
     };
     getEmails();
   }, [name]);
 
   return (
-    <View>
-      <EmailList navigateTo={`${name} Email`} data={data} />
+    <View style={styles.container}>
+      <EmailList loading={loading} navigateTo={`${name} Email`} data={data} />
+      <Compose />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: 'flex',
+  },
+});
 
 export default Box;
