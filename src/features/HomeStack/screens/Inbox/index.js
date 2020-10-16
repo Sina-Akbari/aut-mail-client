@@ -6,7 +6,6 @@ import { getInbox } from '@features/HomeStack/redux/actions';
 
 function Inbox({}) {
   const data = useSelector((state) => state.inbox);
-  console.log('INBOX', data);
   const dispatch = useDispatch();
 
   useEffect(() => {

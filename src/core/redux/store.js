@@ -6,18 +6,25 @@ import themeReducer from '@core/redux/theme/reducer';
 import authReducer from '@features/AuthStack/redux/reducer';
 import inboxReducer from '@features/HomeStack/redux/reducers';
 import sendReducer from '@features/SendStack/redux/reducers';
+import routeReducer from '@core/navigation/reducer';
+import boxReducer from '@core/redux/boxes/reducer';
 
 const initialState = {
   theme: 'light',
   token: null,
+  route: null,
   inbox: [],
+  sendBox: [],
+  boxes: ['INBOX', 'SENT'],
 };
 
 export const rootReducer = combineReducers({
   theme: themeReducer,
   token: authReducer,
+  route: routeReducer,
   inbox: inboxReducer,
   sendBox: sendReducer,
+  boxes: boxReducer,
 });
 
 const persistConfig = {

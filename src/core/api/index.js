@@ -6,7 +6,7 @@ import { API_URL } from '../../../env.json';
 import { logout } from '@features/AuthStack/redux/actions';
 
 export const configuredAxios = Axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL || 'https://nest-mail.herokuapp.com',
 });
 
 configuredAxios.interceptors.response.use(
@@ -22,7 +22,7 @@ configuredAxios.interceptors.response.use(
       // state.dispatch(showError(error.response.data.message));
       return { ...error.response.data, status: error.response.status };
     } else if (error.request) {
-      console.log('ERROR REQUEST', error.request.status);
+      console.log('ERROR REQUEST', error.request);
       // state.dispatch(showError('Network connection error!'));
       return error;
     } else {

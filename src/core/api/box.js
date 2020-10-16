@@ -36,7 +36,7 @@ export const deleteEmailAPI = async (id, box = 'INBOX') => {
   return { success: success.data, error };
 };
 
-export const getBoxes = async () => {
+export const getAllBoxAPI = async () => {
   let success = null;
   let error = null;
   try {
