@@ -1,12 +1,13 @@
+import { Avatar } from '@ui-kitten/components';
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default ({ isSeen }) => {
   return (
-    <Image
+    <Avatar
       style={[
         styles.image,
-        !isSeen ? { borderWidth: 5, borderColor: '#fa8a02' } : {},
+        !isSeen ? { borderWidth: 5, borderColor: '#41de12' } : {},
       ]}
       source={require('@assets/images/Avatar.png')}
     />

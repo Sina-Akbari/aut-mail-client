@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Avatar from '@components/Avatar';
+import { Layout, Text } from '@ui-kitten/components';
 
 export default ({ id, from, subject, isSeen, navigateTo }) => {
   const navigation = useNavigation();
@@ -15,15 +16,15 @@ export default ({ id, from, subject, isSeen, navigateTo }) => {
       onPress={() => {
         navigation.navigate(navigateTo, { id });
       }}>
-      <View style={styles.container}>
+      <Layout style={styles.container}>
         <Avatar isSeen={isSeen} />
-        <View style={styles.textContainer}>
+        <Layout style={styles.textContainer}>
           <Text style={styles.username}>
             {from.name || from.address || 'USERNAME'}
           </Text>
           <Text style={styles.subject}>{subject || 'SUBJECT'}</Text>
-        </View>
-      </View>
+        </Layout>
+      </Layout>
     </TouchableOpacity>
   );
 };
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
   },
   username: {
     fontSize: 16,
-    color: '#212121',
     fontWeight: 'bold',
     textAlign: 'left',
   },

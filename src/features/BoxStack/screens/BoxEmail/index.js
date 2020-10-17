@@ -1,7 +1,8 @@
 import EmailInfo from '@components/EmailInfo';
 import { getEmailAPI } from '@core/api/box';
+import { Layout } from '@ui-kitten/components';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
 
@@ -31,10 +32,10 @@ function Email({ route: ROUTE }) {
     getEmail();
   }, [id, route]);
   return (
-    <View style={styles.container}>
+    <Layout style={styles.container}>
       <EmailInfo from={from} subject={subject} date={date} cc={cc} id={id} />
       <WebView style={styles.webView} source={{ html: html ? html : '' }} />
-    </View>
+    </Layout>
   );
 }
 

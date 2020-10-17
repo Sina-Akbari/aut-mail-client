@@ -10,7 +10,13 @@ function Inbox({}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getInbox());
+    const timer = setInterval(() => {
+      console.log('Hello');
+      dispatch(getInbox());
+    }, 1000 * 5 * 3600);
+    return () => {
+      clearInterval(timer);
+    };
   }, [dispatch]);
 
   return (

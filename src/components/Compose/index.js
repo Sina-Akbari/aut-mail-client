@@ -1,16 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import {
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-  Platform,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform } from 'react-native';
 
-import Input from '@components/Input';
-import Button from '@components/Button';
 import Modal from 'react-native-modal';
 import { sendEmailAPI } from '@core/api/send';
+import { Avatar, Button, Input, Layout } from '@ui-kitten/components';
 import { translate } from '@translations';
 
 function Compose() {
@@ -44,13 +37,13 @@ function Compose() {
   return (
     <Fragment>
       <TouchableOpacity style={styles.fabButton} onPress={openModal}>
-        <Image
+        <Avatar
           style={styles.image}
           source={require('@assets/images/Plus.png')}
         />
       </TouchableOpacity>
       <Modal style={styles.modal} isVisible={isModalVisible}>
-        <View style={styles.modalContainer}>
+        <Layout style={styles.modalContainer}>
           <Input
             placeholder="To"
             value={to}
@@ -87,7 +80,7 @@ function Compose() {
           <Button style={styles.close} onPress={closeModal}>
             {translate('Close')}
           </Button>
-        </View>
+        </Layout>
       </Modal>
     </Fragment>
   );

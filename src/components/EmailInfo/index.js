@@ -1,17 +1,18 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import day from 'dayjs';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { deleteEmailAPI } from '@core/api/box';
+import { Avatar, Layout, Text } from '@ui-kitten/components';
 
 export default ({ from, subject, date, cc, id }) => {
   const navigation = useNavigation();
   const currentBox = navigation.dangerouslyGetState().routes[0];
 
   return (
-    <View style={styles.container}>
-      <View style={styles.fieldContainer}>
+    <Layout style={styles.container}>
+      <Layout style={styles.fieldContainer}>
         <Text style={styles.header}>From:</Text>
         <Text style={styles.description}>
           {from && (from.name || from.address)}
@@ -25,24 +26,24 @@ export default ({ from, subject, date, cc, id }) => {
               })
               .catch((err) => console.log(err));
           }}>
-          <Image
+          <Avatar
             style={styles.trash}
             source={require('@assets/images/Trash.png')}
           />
         </TouchableOpacity>
-      </View>
-      <View style={styles.fieldContainer}>
+      </Layout>
+      <Layout style={styles.fieldContainer}>
         <Text style={styles.header}>Subject:</Text>
         <Text style={styles.description}> {subject}</Text>
-      </View>
-      <View style={styles.fieldContainer}>
+      </Layout>
+      <Layout style={styles.fieldContainer}>
         <Text style={styles.header}>Date:</Text>
         <Text style={styles.description}>
           {' '}
           {date ? day(date).format('YYYY-MM-DD HH:mm') : ''}
         </Text>
-      </View>
-      <View style={styles.fieldContainer}>
+      </Layout>
+      <Layout style={styles.fieldContainer}>
         <Text style={styles.header}>CC:</Text>
         <Text style={styles.description}>
           {' '}
@@ -53,8 +54,8 @@ export default ({ from, subject, date, cc, id }) => {
               })
               .join(', ')}
         </Text>
-      </View>
-    </View>
+      </Layout>
+    </Layout>
   );
 };
 

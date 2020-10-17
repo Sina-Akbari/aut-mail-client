@@ -1,18 +1,17 @@
-import { Divider, Spinner } from '@ui-kitten/components';
+import { Divider, Layout, List, Spinner, Text } from '@ui-kitten/components';
 import React, { Fragment } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native';
 import EmailItem from '../EmailItem';
 
 export default ({ navigateTo, data, loading }) => {
   return (
     <Fragment>
       {loading ? (
-        <View style={styles.container}>
+        <Layout style={styles.container}>
           <Spinner size="giant" />
-        </View>
+        </Layout>
       ) : data.length ? (
-        <FlatList
+        <List
           data={data}
           windowSize={16}
           keyExtractor={({ id }) => `${id}`}
@@ -28,9 +27,9 @@ export default ({ navigateTo, data, loading }) => {
           ItemSeparatorComponent={() => <Divider style={styles.divider} />}
         />
       ) : (
-        <View style={styles.container}>
+        <Layout style={styles.container}>
           <Text>No Mails to Show!</Text>
-        </View>
+        </Layout>
       )}
     </Fragment>
   );

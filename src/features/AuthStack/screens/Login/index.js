@@ -1,15 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { Layout, withStyles } from '@ui-kitten/components';
-
-import Button from '@components/Button';
-import Input from '@components/Input';
+import { Button, Input, Layout, withStyles } from '@ui-kitten/components';
 import { translate } from '@translations';
 
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions';
 
-function Login({ navigation, eva }) {
+function Login({ eva }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
