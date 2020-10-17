@@ -11,6 +11,7 @@ import Input from '@components/Input';
 import Button from '@components/Button';
 import Modal from 'react-native-modal';
 import { sendEmailAPI } from '@core/api/send';
+import { translate } from '@translations';
 
 function Compose() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -81,10 +82,10 @@ function Compose() {
             onPress={() => {
               sendEmail();
             }}>
-            Send
+            {translate('Send')}
           </Button>
           <Button style={styles.close} onPress={closeModal}>
-            Close
+            {translate('Close')}
           </Button>
         </View>
       </Modal>
