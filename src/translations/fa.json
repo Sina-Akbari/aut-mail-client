@@ -8,5 +8,7 @@
   "Register": "ثبت نام",
   "Change Theme": "تغییر نمایه",
   "Send": "ارسال",
-  "Close": "بستن"
+  "Close": "بستن",
+  "Delete": "پاک کردن",
+  "MoveFolder": "جابجا کردن پوشه"
 }

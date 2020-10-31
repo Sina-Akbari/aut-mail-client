@@ -1,33 +1,23 @@
 import { Divider, Layout, List, Spinner, Text } from '@ui-kitten/components';
-import { getEmailsAPI } from '@core/api/box';
+import EmailItem from '@components/EmailItem';
 import React, { Fragment, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import EmailItem from '../EmailItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSentBox } from '@features/SendStack/redux/actions';
+import { startLoading } from '@core/redux/loading/actions';
 
 export default ({ navigateTo, currentBox }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loading2, setLoading2] = useState(true);
+  const data = useSelector((state) => state.sendBox);
+  const loading = useSelector((state) => state.loading);
   const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getEmails = async () => {
-      const { success, error } = await getEmailsAPI(1, 100, currentBox);
-      if (success) {
-        setData(success.reverse());
-        console.log('Success', success);
-      } else {
-        console.log(error);
-      }
-      setLoading(false);
-      setLoading2(false);
-    };
-    getEmails();
-  }, [count, currentBox]);
-
+    dispatch(getSentBox());
+  }, [dispatch, count]);
   return (
     <Fragment>
-      {loading2 ? (
+      {loading ? (
         <Layout style={styles.container}>
           <Spinner size="giant" />
         </Layout>
@@ -48,7 +38,7 @@ export default ({ navigateTo, currentBox }) => {
           )}
           onRefresh={() => {
             setCount(count + 1);
-            setLoading(true);
+            dispatch(startLoading());
           }}
           refreshing={loading}
           ItemSeparatorComponent={() => <Divider style={styles.divider} />}

@@ -1,28 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
-import EmailList from '@components/EmailList';
-import { useDispatch, useSelector } from 'react-redux';
-import { getInbox } from '@features/HomeStack/redux/actions';
+import EmailList from '../components/EmailList';
 import Compose from '@components/Compose';
+import FolderModal from '@components/FolderModal';
 
-function Inbox({}) {
-  const data = useSelector((state) => state.inbox);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      console.log('Hello');
-      dispatch(getInbox());
-    }, 1000 * 5 * 3600);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [dispatch]);
-
+function Inbox({ route: { name } }) {
   return (
     <View>
-      <EmailList navigateTo="Recieved Email" data={data} />
+      <EmailList currentBox={name} navigateTo="Recieved Email" />
       <Compose />
+      <FolderModal />
     </View>
   );
 }

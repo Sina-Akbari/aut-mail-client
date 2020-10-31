@@ -8,6 +8,8 @@ import inboxReducer from '@features/HomeStack/redux/reducers';
 import sendReducer from '@features/SendStack/redux/reducers';
 import routeReducer from '@core/navigation/reducer';
 import boxReducer from '@core/redux/boxes/reducer';
+import folderModalReducer from './folderModal/reducer';
+import loadingReducer from './loading/reducer';
 
 const initialState = {
   theme: 'light',
@@ -16,6 +18,12 @@ const initialState = {
   inbox: [],
   sendBox: [],
   boxes: ['INBOX', 'Sent'],
+  folderModal: {
+    state: false,
+    box: 'INBOX',
+    emailId: 0,
+  },
+  loading: false,
 };
 
 export const rootReducer = combineReducers({
@@ -25,6 +33,8 @@ export const rootReducer = combineReducers({
   inbox: inboxReducer,
   sendBox: sendReducer,
   boxes: boxReducer,
+  folderModal: folderModalReducer,
+  loading: loadingReducer,
 });
 
 const persistConfig = {

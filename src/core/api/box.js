@@ -47,3 +47,18 @@ export const getAllBoxAPI = async () => {
 
   return { success: success.data, error };
 };
+
+export const moveFolderAPI = async (source, destination, emailId) => {
+  let success = null;
+  let error = null;
+  try {
+    success = await Axios.post(`mails/move/${emailId}`, {
+      source,
+      destination,
+    });
+  } catch (e) {
+    error = e;
+  }
+
+  return { success: success.data, error };
+};

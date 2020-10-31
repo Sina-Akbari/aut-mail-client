@@ -8,5 +8,7 @@
   "Register": "Register",
   "Change Theme": "Change Theme",
   "Send": "Send",
-  "Close": "Close"
+  "Close": "Close",
+  "Delete": "Delete",
+  "MoveFolder": "Move to Folder"
 }

@@ -3,8 +3,9 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Avatar from '@components/Avatar';
 import { Layout, Text } from '@ui-kitten/components';
+import PopoverButton from '@components/Popover';
 
-export default ({ id, from, subject, isSeen, navigateTo }) => {
+export default ({ id, from, subject, isSeen, navigateTo, currentBox }) => {
   const navigation = useNavigation();
 
   return (
@@ -17,13 +18,16 @@ export default ({ id, from, subject, isSeen, navigateTo }) => {
         navigation.navigate(navigateTo, { id });
       }}>
       <Layout style={styles.container}>
-        <Avatar isSeen={isSeen} />
-        <Layout style={styles.textContainer}>
-          <Text style={styles.username}>
-            {from.name || from.address || 'USERNAME'}
-          </Text>
-          <Text style={styles.subject}>{subject || 'SUBJECT'}</Text>
+        <Layout style={styles.leftSide}>
+          <Avatar isSeen={isSeen} />
+          <Layout style={styles.textContainer}>
+            <Text style={styles.username}>
+              {from.name || from.address || 'USERNAME'}
+            </Text>
+            <Text style={styles.subject}>{subject || 'SUBJECT'}</Text>
+          </Layout>
         </Layout>
+        <PopoverButton currentBox={currentBox} emailId={id} />
       </Layout>
     </TouchableOpacity>
   );
@@ -34,9 +38,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 60,
   },
+  leftSide: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 8,
   },
   textContainer: {

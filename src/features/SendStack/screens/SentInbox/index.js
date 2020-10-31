@@ -1,24 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
-import EmailList from '@components/EmailList';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSentBox } from '../../redux/actions';
+import EmailList from '../components/EmailList';
 import Compose from '@components/Compose';
 
-function Inbox({}) {
-  const data = useSelector((state) => state.sendBox);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSentBox());
-  }, [dispatch]);
-
+function SendInbox({ route: { name } }) {
   return (
     <View>
-      <EmailList navigateTo="Sent Email" data={data} />
+      <EmailList currentBox={name} navigateTo="Sent Email" />
       <Compose />
     </View>
   );
 }
 
-export default Inbox;
+export default SendInbox;
